@@ -27,8 +27,8 @@
 * TextBox - czas który zajęło wykonanie akcji w sekundach
 
 (Jeśli wybrany obiekt znajduje się w grupie obiektów to akcja wykonywana jest na tej grupie)
-	* DeleteObjectButton - usuwa wybrany obiekt
-	* MoveObjectButton - przesuwa wybrany obiekt (przesunięcie obliczane jest od punktu na który kliknęliśmy przy wybieraniu obiektu)
+  * DeleteObjectButton - usuwa wybrany obiekt
+  * MoveObjectButton - przesuwa wybrany obiekt (przesunięcie obliczane jest od punktu na który kliknęliśmy przy wybieraniu obiektu)
 
 * Suwak promienia okręgu
 
