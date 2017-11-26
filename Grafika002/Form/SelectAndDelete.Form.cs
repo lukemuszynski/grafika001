@@ -67,8 +67,10 @@ namespace Grafika002
 
         private void UnselectPolygon(object sender, EventArgs e)
         {
+            SelectedPolygon.FillEnabled = false;
             SelectedPolygon = null;
             _selectPolygonAction = false;
+            RedrawPolygons();
             LockButtons(Grafika002.Form1.ActionType.selectPolygon, true);
         }
     }

@@ -93,17 +93,6 @@ namespace Grafika002.Drawing
                 SetPixel(i, y, color);
         }
 
-        public void SetPixel(int x, int y, int color)
-        {
-            lock (DirectBitmap.Bits)
-            {
-
-                color = GetFinalColorWithLambertModel(new Point(x, y), Color.FromArgb(color),
-                    new Point3D() { X = 600, Y = 200, Z = 50 }, Color.White).ToArgb();
-                DirectBitmap.Bits[x + (y) * _width] = color;
-            }
-        }
-
         public void SetPixel(int x, int y, Color color)
         {
             lock (DirectBitmap.Bits)
@@ -124,19 +113,6 @@ namespace Grafika002.Drawing
 
             for (int i = 0; i < bits; i++)
                 DirectBitmap.Bits[i] = emptyColor;
-        }
-
-        public static Color GetFinalColorWithLambertModel(Point point, Color baseColor, Point3D ligthSource,
-            Color ligthColor, int dxdh = 0, int dydh = 0)
-        {
-            Vector3D normalVector = new Vector3D(dxdh, dydh, 1);
-            Vector3D ligthVector = new Vector3D(ligthSource.X - point.X, ligthSource.Y - point.Y, ligthSource.Z);
-            double cos = Math.Abs(DotProduct(normalVector, ligthVector) / (normalVector.Length * ligthVector.Length));
-            double R = (baseColor.R * ligthColor.R * cos) / 255;
-            double G = (baseColor.G * ligthColor.G * cos) / 255;
-            double B = (baseColor.B * ligthColor.B * cos) / 255;
-
-            return Color.FromArgb((int)R, (int)G, (int)B);
         }
 
         private static double DotProduct(Vector3D normalVector, Vector3D ligthVector)

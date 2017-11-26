@@ -14,6 +14,7 @@ namespace Grafika002
         private void StartDrawingClick(object sender, EventArgs e)
         {
             polygon = new Polygon(_drawing);
+            polygon.FillingColor = polygonDefaultColor.ToArgb();
             Polygons.Add(polygon);
         }
 

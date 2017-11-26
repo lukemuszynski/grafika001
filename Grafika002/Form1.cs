@@ -30,12 +30,13 @@ namespace Grafika002
         }
         private Drawing.Drawing _drawing;
 
-
+        private Color polygonDefaultColor = Color.Chocolate;
 
         private Polygon animationPolygon;
 
         public List<Polygon> Polygons { get; set; }
 
+        private Bitmap _colorPickerBitmap;
 
         public Form1()
         {
@@ -44,6 +45,9 @@ namespace Grafika002
             directBitmap = new DirectBitmap(mainPictureBox.Width, mainPictureBox.Height);
             this.mainPictureBox.Image = directBitmap.Bitmap;
             _drawing = new Drawing.Drawing(directBitmap);
+            _colorPickerBitmap = new Bitmap(this.SelectLightColorPictureBox.Image);
+            FillColorPicker(SelectedLightColorViewer, Color.White);
+            FillColorPicker(SelectedPolygonColorViewer, Color.Chocolate);
         }
 
 
@@ -54,9 +58,9 @@ namespace Grafika002
             {
                 MainPictureBoxSelectPolygon(new Point(e.X, e.Y));
             }
-            if (SetLightPositionAction)
+            else if (SetLightPositionAction)
             {
-                SetLight(Color.White,new Drawing.Drawing.Point3D() {X = e.X, Y = e.Y, Z = 100});
+                SetLightPositionFromPoint(new Drawing.Drawing.Point3D() { X = e.X, Y = e.Y, Z = _lightPoint.Z });
             }
             else
             {
@@ -73,10 +77,8 @@ namespace Grafika002
                 StopAnimationButton.Enabled = !enabled;
                 StartDrawingButton.Enabled = enabled;
                 StopDrawingButton.Enabled = enabled;
-                DeletePolygonButton.Enabled = enabled;
                 UnselectPolygonButton.Enabled = enabled;
                 SelectPolygonButton.Enabled = enabled;
-                DeletePolygonButton.Enabled = enabled;
             }
             if (actionType == ActionType.selectPolygon)
             {
@@ -105,6 +107,6 @@ namespace Grafika002
             this.mainPictureBox.Image = directBitmap.Bitmap;
         }
 
-
+  
     }
 }
