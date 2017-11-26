@@ -32,10 +32,11 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.StartDrawingButton = new System.Windows.Forms.Button();
             this.StopDrawingButton = new System.Windows.Forms.Button();
-            this.IntersectAllPolygonsButton = new System.Windows.Forms.Button();
             this.StartAnimationButton = new System.Windows.Forms.Button();
             this.StopAnimationButton = new System.Windows.Forms.Button();
             this.DeletePolygonButton = new System.Windows.Forms.Button();
+            this.SelectPolygonButton = new System.Windows.Forms.Button();
+            this.UnselectPolygonButton = new System.Windows.Forms.Button();
             this.AnimationBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -54,10 +55,11 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.StartDrawingButton);
             this.flowLayoutPanel1.Controls.Add(this.StopDrawingButton);
-            this.flowLayoutPanel1.Controls.Add(this.IntersectAllPolygonsButton);
             this.flowLayoutPanel1.Controls.Add(this.StartAnimationButton);
             this.flowLayoutPanel1.Controls.Add(this.StopAnimationButton);
             this.flowLayoutPanel1.Controls.Add(this.DeletePolygonButton);
+            this.flowLayoutPanel1.Controls.Add(this.SelectPolygonButton);
+            this.flowLayoutPanel1.Controls.Add(this.UnselectPolygonButton);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(1086, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(234, 676);
@@ -83,19 +85,9 @@
             this.StopDrawingButton.UseVisualStyleBackColor = true;
             this.StopDrawingButton.Click += new System.EventHandler(this.StopDrawingClick);
             // 
-            // IntersectAllPolygonsButton
-            // 
-            this.IntersectAllPolygonsButton.Location = new System.Drawing.Point(3, 61);
-            this.IntersectAllPolygonsButton.Name = "IntersectAllPolygonsButton";
-            this.IntersectAllPolygonsButton.Size = new System.Drawing.Size(231, 23);
-            this.IntersectAllPolygonsButton.TabIndex = 2;
-            this.IntersectAllPolygonsButton.Text = "IntersectAllPolygonsButton";
-            this.IntersectAllPolygonsButton.UseVisualStyleBackColor = true;
-            this.IntersectAllPolygonsButton.Click += new System.EventHandler(this.IntersectAllPolygons);
-            // 
             // StartAnimationButton
             // 
-            this.StartAnimationButton.Location = new System.Drawing.Point(3, 90);
+            this.StartAnimationButton.Location = new System.Drawing.Point(3, 61);
             this.StartAnimationButton.Name = "StartAnimationButton";
             this.StartAnimationButton.Size = new System.Drawing.Size(231, 23);
             this.StartAnimationButton.TabIndex = 3;
@@ -105,7 +97,8 @@
             // 
             // StopAnimationButton
             // 
-            this.StopAnimationButton.Location = new System.Drawing.Point(3, 119);
+            this.StopAnimationButton.Enabled = false;
+            this.StopAnimationButton.Location = new System.Drawing.Point(3, 90);
             this.StopAnimationButton.Name = "StopAnimationButton";
             this.StopAnimationButton.Size = new System.Drawing.Size(231, 23);
             this.StopAnimationButton.TabIndex = 4;
@@ -115,13 +108,35 @@
             // 
             // DeletePolygonButton
             // 
-            this.DeletePolygonButton.Location = new System.Drawing.Point(3, 148);
+            this.DeletePolygonButton.Enabled = false;
+            this.DeletePolygonButton.Location = new System.Drawing.Point(3, 119);
             this.DeletePolygonButton.Name = "DeletePolygonButton";
             this.DeletePolygonButton.Size = new System.Drawing.Size(231, 23);
             this.DeletePolygonButton.TabIndex = 5;
             this.DeletePolygonButton.Text = "DeletePolygonButton";
             this.DeletePolygonButton.UseVisualStyleBackColor = true;
             this.DeletePolygonButton.Click += new System.EventHandler(this.DeletePolygon);
+            // 
+            // SelectPolygonButton
+            // 
+            this.SelectPolygonButton.Location = new System.Drawing.Point(3, 148);
+            this.SelectPolygonButton.Name = "SelectPolygonButton";
+            this.SelectPolygonButton.Size = new System.Drawing.Size(231, 23);
+            this.SelectPolygonButton.TabIndex = 6;
+            this.SelectPolygonButton.Text = "SelectPolygonButton";
+            this.SelectPolygonButton.UseVisualStyleBackColor = true;
+            this.SelectPolygonButton.Click += new System.EventHandler(this.SelectPolygon);
+            // 
+            // UnselectPolygonButton
+            // 
+            this.UnselectPolygonButton.Enabled = false;
+            this.UnselectPolygonButton.Location = new System.Drawing.Point(3, 177);
+            this.UnselectPolygonButton.Name = "UnselectPolygonButton";
+            this.UnselectPolygonButton.Size = new System.Drawing.Size(231, 23);
+            this.UnselectPolygonButton.TabIndex = 7;
+            this.UnselectPolygonButton.Text = "UnselectPolygonButton";
+            this.UnselectPolygonButton.UseVisualStyleBackColor = true;
+            this.UnselectPolygonButton.Click += new System.EventHandler(this.UnselectPolygon);
             // 
             // Form1
             // 
@@ -144,11 +159,12 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button StartDrawingButton;
         private System.Windows.Forms.Button StopDrawingButton;
-        private System.Windows.Forms.Button IntersectAllPolygonsButton;
         private System.Windows.Forms.Button StartAnimationButton;
         private System.ComponentModel.BackgroundWorker AnimationBackgroundWorker;
         private System.Windows.Forms.Button StopAnimationButton;
         private System.Windows.Forms.Button DeletePolygonButton;
+        private System.Windows.Forms.Button SelectPolygonButton;
+        private System.Windows.Forms.Button UnselectPolygonButton;
     }
 }
 

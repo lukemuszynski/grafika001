@@ -24,6 +24,7 @@ namespace Grafika002.Drawing.BuildingBlocks
             _drawing = drawing;
             _color = Color.Aqua;
             FillingColor = Color.Chocolate.ToArgb();
+            FillEnabled = false;
         }
 
         public int MoveRigth()
