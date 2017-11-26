@@ -11,7 +11,7 @@ using Grafika001.Drawing.BuildingBlocks;
 
 namespace Grafika001.Logic
 {
-    public class FormLogic
+    public partial class FormLogic
     {
 
         private List<Point> Clicks
@@ -37,12 +37,10 @@ namespace Grafika001.Logic
 
         private List<Point> _clicksDrawLine;
         private List<Point> _clicksStartDrawPolygon;
-        private List<Point> _clicksDrawCircleOptimized;
         private List<Point> _clicksOther;
-        private List<Point> _clicksSetConcerntic;
 
         private int _width;
-        private int _radius;
+
         private TextBox _timeTextBox;
         private readonly MainForm.ButtonControl _buttonControl;
         //private const int HighlightColor = Color.Yellow.ToArgb();
@@ -52,11 +50,6 @@ namespace Grafika001.Logic
         private GuidMapLogic GuidMapLogic { get; set; }
 
 
-        public int Radius
-        {
-            get { return _radius < 15 ? 15 : _radius; }
-            set { _radius = value; }
-        }
 
         public int Width
         {
@@ -129,61 +122,6 @@ namespace Grafika001.Logic
             var line = new Line(Clicks[Clicks.Count - 2], Clicks.Last(), Width, Drawing, GuidMapLogic, CurrentPolygon);
             CurrentPolygon.AddLine(line);
             line.DrawItself();
-        }
-
-        private void DrawCircle()
-        {
-            var circle = new Circle(Clicks.Last(), Radius, Drawing, GuidMapLogic, Width);
-            GraphicObjects.Add(circle.Guid, circle);
-            circle.DrawItself();
-            circle.DrawOnGuidMap();
-            //GuidMapLogic.SetOnMap(circle);
-            Clicks.Clear();
-        }
-
-        List<Circle> ConnectedCircles = new List<Circle>();
-
-        private void SetConcrentic()
-        {
-            Guid mapGuid = GuidMapLogic.GuidMap[Clicks.Last().X + Clicks.Last().Y * Drawing.Width];
-            GraphicObject graphicObject = null;
-
-            //Guid mapGuiFirstCircle = GuidMapLogic.GuidMap[Clicks.First().X + Clicks.First().Y * Drawing.Width];
-
-            if (mapGuid != Guid.Empty)
-            {
-                ConnectedCircle connectedCircle;
-                graphicObject = GraphicObjects[mapGuid];
-
-                if (GraphicObjects[mapGuid].GraphicObjectType == GraphicObjectType.Circle)
-                    ConnectedCircles.Add(GraphicObjects[mapGuid] as Circle);
-
-
-                if (graphicObject.GraphicObjectType == GraphicObjectType.Circle)
-                {
-                    var firstCircle = ConnectedCircles.FirstOrDefault();
-                    var circle = ConnectedCircles.LastOrDefault();
-                    if (ConnectedCircles.Count > 1)
-                    {
-                        if (firstCircle.ParentGraphicObject == null)
-                        {
-                            connectedCircle = new ConnectedCircle(firstCircle, circle, Drawing, GuidMapLogic);
-                            firstCircle.ParentGraphicObject = connectedCircle;
-                            circle.ParentGraphicObject = connectedCircle;
-                            circle.Center = firstCircle.Center;
-                            GraphicObjects.Add(connectedCircle.Guid, connectedCircle);
-                        }
-                        else
-                        {
-                            circle.Center = firstCircle.Center;
-                            (firstCircle.ParentGraphicObject as ConnectedCircle).AddCircle(circle);
-                        }
-                    }
-                }
-            }
-
-            Redraw();
-
         }
 
         private void MoveObject()
@@ -295,16 +233,6 @@ namespace Grafika001.Logic
             }
         }
 
-        public void ChangeRadius(int r)
-        {
-            Radius = r;
-            if (SelectedObject?.GraphicObjectType == GraphicObjectType.Circle)
-            {
-                (SelectedObject as Circle).Radius = r;
-                HighlightObject();
-                Redraw();
-            }
-        }
 
         private void SelectObject()
         {
@@ -369,26 +297,6 @@ namespace Grafika001.Logic
             }
         }
 
-        public void HightLightConnectedCircles()
-        {
-            List<Circle> CirclesToHighligth = new List<Circle>();
-            var connectedCirle = (SelectedObject as Circle).ParentGraphicObject as ConnectedCircle;
-            foreach (var circle1 in connectedCirle.Circles)
-            {
-                Circle biggerCircle1 = (circle1.Clone() as Circle);
-                Circle smallerCircle1 = (circle1.Clone() as Circle);
-                biggerCircle1.Radius += 5;
-                smallerCircle1.Radius -= 5;
-                biggerCircle1.Color = Consts.HightLightColor;
-                smallerCircle1.Color = Consts.HightLightColor;
-                CirclesToHighligth.Add(biggerCircle1);
-                CirclesToHighligth.Add(smallerCircle1);
-                //Drawing.DrawCircle(biggerCircle1);
-                //Drawing.DrawCircle(smallerCircle1);
-            }
-            CirclesToHighligth.ForEach(x => Drawing.DrawCircle(x));
-
-        }
 
         private FormAction[] NewObjectsActions =
             new[]{ FormAction.DrawLine,

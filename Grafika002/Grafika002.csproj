@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{861291B8-C781-447C-9679-52BE21145D3A}</ProjectGuid>
+    <ProjectGuid>{DA236448-7B6B-4053-9C36-3E9242207F7F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Grafika001</RootNamespace>
-    <AssemblyName>Grafika001</AssemblyName>
+    <RootNamespace>Grafika002</RootNamespace>
+    <AssemblyName>Grafika002</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,29 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Drawing\BuildingBlocks\Circle.cs" />
-    <Compile Include="Drawing\BuildingBlocks\ConnectedCircle.cs" />
-    <Compile Include="Drawing\BuildingBlocks\Consts.cs" />
-    <Compile Include="Drawing\BuildingBlocks\GraphicObject.cs" />
-    <Compile Include="Drawing\BuildingBlocks\GraphicObjectType.cs" />
-    <Compile Include="Drawing\BuildingBlocks\Poligon.cs" />
-    <Compile Include="Drawing\BuildingBlocks\Verticle.cs" />
+    <Compile Include="Drawing\BuildingBlocks\Polygon.cs" />
+    <Compile Include="Drawing\Clipping.cs" />
     <Compile Include="Drawing\DirectBitmap.cs" />
     <Compile Include="Drawing\Drawing.cs" />
-    <Compile Include="Drawing\Line.cs" />
-    <Compile Include="Logic\FormLogic.Circle.cs" />
-    <Compile Include="Logic\FormLogic.Poligon.cs" />
-    <Compile Include="Logic\GuidMapLogic.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="ExtensionMethods\Point.ExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\Rectangle.ExtensionMethods.cs" />
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -91,9 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
