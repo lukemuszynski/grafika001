@@ -90,7 +90,7 @@ namespace Grafika002.Drawing
             {
 
                 color = GetFinalColorWithLambertModel(new Point(x, y), Color.FromArgb(color),
-                    new Point3D() {X = 200, Y = 200, Z = 50}, Color.White).ToArgb();
+                    new Point3D() {X = 600, Y = 200, Z = 50}, Color.White).ToArgb();
                 DirectBitmap.Bits[x + (y) * _width] = color;
             }
         }

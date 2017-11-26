@@ -118,7 +118,8 @@ namespace Grafika002
 
                 Polygon intersectedPolygn = new Polygon(_drawing);
                 intersectedPolygn.AddVerticle(intersectedPoints);
-                intersectedPolygn.FillingColor = Color.Crimson.ToArgb();
+                intersectedPolygn.FillingColor = Polygons[i].FillingColor;
+                intersectedPolygon.FillEnabled = true;
                 intersectedPolygn.DrawPolygon(true);
             }
 
@@ -133,6 +134,7 @@ namespace Grafika002
             animationPolygon = Polygon.RandomPolygon(_drawing);
 
             animationPolygon.FinnishDrawing();
+            animationPolygon.FillEnabled = true;
             Polygons.Add(animationPolygon);
 
             int maxRight = 0;

@@ -13,7 +13,7 @@ namespace Grafika002.Drawing.BuildingBlocks
     {
         private Color _color;
         public List<Point> Points { get; private set; }
-
+        public bool FillEnabled { get; set; }
         private IDrawing _drawing;
 
         public int FillingColor { get; set; }
@@ -56,7 +56,7 @@ namespace Grafika002.Drawing.BuildingBlocks
 
                 _drawing.DrawLine(Points.First(), Points.Last(), _color);
             }
-            if (fill)
+            if (fill || FillEnabled)
                 Fill();
         }
 
@@ -131,6 +131,7 @@ namespace Grafika002.Drawing.BuildingBlocks
             int vertices = rand.Next(3, 10);
             var points = Polygon.MakeRandomPolygon(vertices);
             var polygon = new Polygon(drawing);
+            polygon.FillingColor = Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256)).ToArgb();
             polygon.AddVerticle(points);
             return polygon;
         }
