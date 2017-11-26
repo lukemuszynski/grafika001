@@ -67,6 +67,9 @@
     <Compile Include="Form\SelectAndDelete.Form.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\SetLight.Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

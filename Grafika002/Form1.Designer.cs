@@ -37,6 +37,7 @@
             this.DeletePolygonButton = new System.Windows.Forms.Button();
             this.SelectPolygonButton = new System.Windows.Forms.Button();
             this.UnselectPolygonButton = new System.Windows.Forms.Button();
+            this.SetLightPositionButton = new System.Windows.Forms.Button();
             this.AnimationBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -60,6 +61,7 @@
             this.flowLayoutPanel1.Controls.Add(this.DeletePolygonButton);
             this.flowLayoutPanel1.Controls.Add(this.SelectPolygonButton);
             this.flowLayoutPanel1.Controls.Add(this.UnselectPolygonButton);
+            this.flowLayoutPanel1.Controls.Add(this.SetLightPositionButton);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(1086, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(234, 676);
@@ -138,6 +140,16 @@
             this.UnselectPolygonButton.UseVisualStyleBackColor = true;
             this.UnselectPolygonButton.Click += new System.EventHandler(this.UnselectPolygon);
             // 
+            // SetLightPositionButton
+            // 
+            this.SetLightPositionButton.Location = new System.Drawing.Point(3, 206);
+            this.SetLightPositionButton.Name = "SetLightPositionButton";
+            this.SetLightPositionButton.Size = new System.Drawing.Size(231, 23);
+            this.SetLightPositionButton.TabIndex = 8;
+            this.SetLightPositionButton.Text = "SetLightPositionButton";
+            this.SetLightPositionButton.UseVisualStyleBackColor = true;
+            this.SetLightPositionButton.Click += new System.EventHandler(this.SetLightPosition);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -165,6 +177,7 @@
         private System.Windows.Forms.Button DeletePolygonButton;
         private System.Windows.Forms.Button SelectPolygonButton;
         private System.Windows.Forms.Button UnselectPolygonButton;
+        private System.Windows.Forms.Button SetLightPositionButton;
     }
 }
 

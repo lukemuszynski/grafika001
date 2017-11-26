@@ -94,19 +94,22 @@ namespace Grafika002.Drawing.BuildingBlocks
                     int g = 124;
                 }
                 if (currentLines.Count > 1)
+                {
+                    Color fillingColor = Color.FromArgb(FillingColor);
                     for (int j = 0; j < currentLines.Count - 1; j += 2)
                     {
-                        point1.X = (int)currentLines[j].X;
+                        point1.X = (int) currentLines[j].X;
                         point1.Y = i;
 
-                        point2.X = (int)currentLines[j + 1].X;
+                        point2.X = (int) currentLines[j + 1].X;
                         point2.Y = i;
 
-                        _drawing.DrawHorizontalLine(i, point1.X, point2.X, FillingColor);
+                        _drawing.DrawHorizontalLine(i, point1.X, point2.X, fillingColor);
 
                         currentLines[j].MoveX();
                         currentLines[j + 1].MoveX();
                     }
+                }
             }
         }
 

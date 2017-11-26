@@ -54,7 +54,10 @@ namespace Grafika002
             {
                 MainPictureBoxSelectPolygon(new Point(e.X, e.Y));
             }
-
+            if (SetLightPositionAction)
+            {
+                SetLight(Color.White,new Drawing.Drawing.Point3D() {X = e.X, Y = e.Y, Z = 100});
+            }
             else
             {
                 polygon?.AddVerticle(new Point(e.X, e.Y));
@@ -90,7 +93,8 @@ namespace Grafika002
         enum ActionType
         {
             animation,
-            selectPolygon
+            selectPolygon,
+            setLightPosition
         }
 
         private void RedrawPolygons()
