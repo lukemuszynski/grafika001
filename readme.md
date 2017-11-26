@@ -1,4 +1,26 @@
-﻿Pojęcia:
+﻿Projekt 2:
+
+* StartDrawPolygon - budowanie wielokątu. Kolejne wierzchołki ustawiane przez kliknięcie na polu do rysowania.
+
+* StopDrawPolygon - końcy budowanie wielokątu, łączy pierwszy wierzchołek z ostatni.
+
+* Light Color Picker - wybor koloru swiatla poprzez klikniecie na ponizszym boxie, wybrany kolor wypelnia mniejszy box po prawej stronie
+
+* Text box pod color pickerem ustawia odległość punktu światła w płaszczyźnie Z, Int32.TryParse()
+
+* Polygon Color Picker - wybor koloru nastepnego utworzonego przez nas wielokatu, dzialanie analogiczne z powyższym Light Color Picker
+
+* Start Animation Button - generuje losowy wielokąt o losowym kolorze i przesuwa go z prawej do lewej strony ekranu
+
+* Stop Animation Button - zatrzymuje animację i usuwa wygenerowany na potrzeby animacji wielokąt
+
+* Select Polygon Button - zaznacza wielokąt leżący najbliżej kliknięcia
+
+* Delete Polygon Button - usuwa zaznaczony wielokąt
+
+* Set Light Position Button - po kliknięciu możemy wybrać na głównej bitmapie pozycję światła
+
+Projekt 1: Pojęcia:
 
 1. Grupa obiektów: 
 	a) ConcentricCircles - logicznie połączone ze sobą okręgi
