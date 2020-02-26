@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Grafika003
@@ -40,13 +41,19 @@ namespace Grafika003
             reload_histograms();
         }
 
-        private void button_applyGenericMatrixFilter_Click(object sender, System.EventArgs e)
+        private Bitmap applyFilter(Bitmap copiedBitmap)
         {
             var filterMatrix = JsonConvert.DeserializeObject<double[,]>(FilterJson.Text);
 
-            var resultBitmap = GenericMatrixFilter.ConvolutionFilter(new Bitmap(mainPictureBox.Image), filterMatrix, 
-                checkbox_normalization.Checked ? 1.0/filterMatrix.Sum() : 1.0);
-            mainPictureBox.Image = resultBitmap;
+            var resultBitmap = GenericMatrixFilter.ConvolutionFilter(copiedBitmap, filterMatrix,
+                checkbox_normalization.Checked ? 1.0 / filterMatrix.Sum() : 1.0);
+
+            return resultBitmap;
+        }
+
+        private void button_applyGenericMatrixFilter_Click(object sender, System.EventArgs e)
+        {
+            mainPictureBox.Image = applyFilter(new Bitmap(mainPictureBox.Image));
 
             reload_histograms();
         }
@@ -85,7 +92,7 @@ namespace Grafika003
         {
             reload_histograms();
         }
-        
+
         private void reload_histograms()
         {
             if (checkbox_showHistogram.Checked)
@@ -114,13 +121,52 @@ namespace Grafika003
         {
             Point local = mainPictureBox.PointToClient(Cursor.Position);
             int diameter = trackBar_brushSize.Value;
-        
-            e.Graphics.DrawEllipse(Pens.Red, local.X-diameter, local.Y-diameter, diameter*2, diameter * 2);
+
+            e.Graphics.DrawEllipse(Pens.Red, local.X - diameter, local.Y - diameter, diameter * 2, diameter * 2);
         }
 
         private void mainPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             mainPictureBox.Invalidate();
+        }
+
+        private void mainPictureBox_Click(object sender, EventArgs e)
+        {
+            Point local = mainPictureBox.PointToClient(Cursor.Position);
+            int diameter = trackBar_brushSize.Value;
+
+            Rectangle cropRect = new Rectangle(local.X - diameter, local.Y - diameter, diameter * 2, diameter * 2);
+            Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
+            Bitmap targetWithFilter = new Bitmap(cropRect.Width, cropRect.Height);
+            targetWithFilter.MakeTransparent();
+
+            using (Graphics graphicsTarget = Graphics.FromImage(target))
+            {
+                graphicsTarget.DrawImage(mainPictureBox.Image,
+                    new Rectangle(0, 0, target.Width, target.Height),
+                    cropRect,
+                    GraphicsUnit.Pixel);
+                target = applyFilter(target);
+            }
+
+            using (Graphics graphicsTargetWithFilter = Graphics.FromImage(targetWithFilter))
+            {
+                GraphicsPath path = new GraphicsPath();
+                path.AddEllipse(new Rectangle(0, 0, target.Width, target.Height));
+                graphicsTargetWithFilter.SetClip(path);
+                graphicsTargetWithFilter.DrawImage(target,
+                    new Rectangle(0, 0, target.Width, target.Height),
+                    new Rectangle(0, 0, target.Width, target.Height),
+                    GraphicsUnit.Pixel);
+            }
+
+            using (Graphics graphicsMainPicture = Graphics.FromImage(mainPictureBox.Image))
+            {
+                graphicsMainPicture.DrawImage(targetWithFilter, local.X - diameter, local.Y - diameter);
+            }
+            // when done with all drawing you can enforce the display update by calling:
+            mainPictureBox.Refresh();
+            reload_histograms();
         }
     }
 }
