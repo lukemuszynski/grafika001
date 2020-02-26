@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Grafika002.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Windows;
-using Grafika002.ExtensionMethods;
 
 namespace Grafika002.Drawing
-{ 
+{
     public static class SutherlandHodgman
     {
         #region Class: Edge

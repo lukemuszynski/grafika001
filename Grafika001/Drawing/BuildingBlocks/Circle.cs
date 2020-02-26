@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Grafika001.Logic;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Grafika001.Logic;
 
 namespace Grafika001.Drawing.BuildingBlocks
 {
