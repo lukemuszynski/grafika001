@@ -21,6 +21,19 @@ namespace Grafika003
 
         }
 
+        private void enableButtons()
+        {
+            button_applyGenericMatrixFilter.Enabled = true;
+            button_setLaplacian.Enabled = true;
+            button_setLaplacian55.Enabled = true;
+            button_setGaussian5x5type2.Enabled = true;
+            button_setGaussian5x5type1.Enabled = true;
+            checkbox_showHistogram.Enabled = true;
+            button_reset_image.Enabled = true;
+            button_setSobel3x3Hor.Enabled = true;
+            button_setSobel3x3Ver.Enabled = true;
+        }
+
         private void button_openFile(object sender, System.EventArgs e)
         {
             openFileDialog.Filter = "Image Files(*.jpeg; *.bmp; *.png; *.jpg)| *.jpeg; *.bmp; *.png; *.jpg";
@@ -29,6 +42,7 @@ namespace Grafika003
             if (result == DialogResult.OK)
             {
                 loadBitmap();
+                enableButtons();
             }
         }
 
@@ -45,8 +59,14 @@ namespace Grafika003
         {
             var filterMatrix = JsonConvert.DeserializeObject<double[,]>(FilterJson.Text);
 
-            var resultBitmap = GenericMatrixFilter.ConvolutionFilter(copiedBitmap, filterMatrix,
-                checkbox_normalization.Checked ? 1.0 / filterMatrix.Sum() : 1.0);
+            if(filterMatrix.GetUpperBound(0) != filterMatrix.GetUpperBound(1))
+            {
+                return copiedBitmap;
+            }
+
+            var normalizationFactor = (checkbox_normalization.Checked ? 1.0 / filterMatrix.Sum() : 1.0)/(double)trackBar_normalizationFactor.Value;
+
+            var resultBitmap = GenericMatrixFilter.ConvolutionFilter(copiedBitmap, filterMatrix, normalizationFactor);
 
             return resultBitmap;
         }
@@ -132,6 +152,11 @@ namespace Grafika003
 
         private void mainPictureBox_Click(object sender, EventArgs e)
         {
+            if(mainPictureBox.Image == null)
+            {
+                return;
+            }
+
             Point local = mainPictureBox.PointToClient(Cursor.Position);
             int diameter = trackBar_brushSize.Value;
 
@@ -167,6 +192,17 @@ namespace Grafika003
             // when done with all drawing you can enforce the display update by calling:
             mainPictureBox.Refresh();
             reload_histograms();
+        }
+
+        private void button_generate_gauss_Click(object sender, EventArgs e)
+        {
+            var xValue = textBox_gauss_x.Text;
+            if(Int32.TryParse(xValue, out int x))
+            {
+                var matrix = MatrixFilters.GaussianBlur(x, x);
+
+                FilterJson.Text = JsonConvert.SerializeObject(matrix, Formatting.Indented);
+            }
         }
     }
 }
