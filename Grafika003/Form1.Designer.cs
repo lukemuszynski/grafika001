@@ -42,26 +42,28 @@
             this.button_setGaussian5x5type1 = new System.Windows.Forms.Button();
             this.checkbox_normalization = new System.Windows.Forms.CheckBox();
             this.checkbox_showHistogram = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.trackBar_brushSize = new System.Windows.Forms.TrackBar();
             this.textBox_gauss_x = new System.Windows.Forms.MaskedTextBox();
             this.button_generate_gauss = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.trackBar_normalizationFactor = new System.Windows.Forms.TrackBar();
+            this.button_prewitt3x3Horizontal = new System.Windows.Forms.Button();
+            this.button_prewitt3x3Vertical = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.picturebox_histogramLeft = new System.Windows.Forms.PictureBox();
             this.picturebox_histogram = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.trackBar_normalizationFactor = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_brushSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_normalizationFactor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_histogramLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_histogram)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_normalizationFactor)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPictureBox
             // 
-            this.mainPictureBox.Location = new System.Drawing.Point(2, 2);
+            this.mainPictureBox.Location = new System.Drawing.Point(6, 2);
             this.mainPictureBox.Name = "mainPictureBox";
             this.mainPictureBox.Size = new System.Drawing.Size(1080, 676);
             this.mainPictureBox.TabIndex = 2;
@@ -90,6 +92,8 @@
             this.panel1.Controls.Add(this.button_generate_gauss);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.trackBar_normalizationFactor);
+            this.panel1.Controls.Add(this.button_prewitt3x3Horizontal);
+            this.panel1.Controls.Add(this.button_prewitt3x3Vertical);
             this.panel1.Location = new System.Drawing.Point(1089, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(231, 676);
@@ -131,7 +135,7 @@
             this.button_applyGenericMatrixFilter.Name = "button_applyGenericMatrixFilter";
             this.button_applyGenericMatrixFilter.Size = new System.Drawing.Size(169, 23);
             this.button_applyGenericMatrixFilter.TabIndex = 2;
-            this.button_applyGenericMatrixFilter.Text = "Wykonaj filtr";
+            this.button_applyGenericMatrixFilter.Text = "Wykonaj filtr na całym obrazie";
             this.button_applyGenericMatrixFilter.UseVisualStyleBackColor = true;
             this.button_applyGenericMatrixFilter.Click += new System.EventHandler(this.button_applyGenericMatrixFilter_Click);
             // 
@@ -227,6 +231,15 @@
             this.checkbox_showHistogram.UseVisualStyleBackColor = true;
             this.checkbox_showHistogram.CheckedChanged += new System.EventHandler(this.checkbox_showHistogram_CheckedChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 427);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Promień pędzla";
+            // 
             // trackBar_brushSize
             // 
             this.trackBar_brushSize.Location = new System.Drawing.Point(3, 443);
@@ -256,6 +269,48 @@
             this.button_generate_gauss.UseVisualStyleBackColor = true;
             this.button_generate_gauss.Click += new System.EventHandler(this.button_generate_gauss_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 520);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Mnożnik macierzy";
+            // 
+            // trackBar_normalizationFactor
+            // 
+            this.trackBar_normalizationFactor.LargeChange = 1;
+            this.trackBar_normalizationFactor.Location = new System.Drawing.Point(3, 536);
+            this.trackBar_normalizationFactor.Maximum = 255;
+            this.trackBar_normalizationFactor.Minimum = 1;
+            this.trackBar_normalizationFactor.Name = "trackBar_normalizationFactor";
+            this.trackBar_normalizationFactor.Size = new System.Drawing.Size(223, 45);
+            this.trackBar_normalizationFactor.TabIndex = 18;
+            this.trackBar_normalizationFactor.Value = 1;
+            // 
+            // button_prewitt3x3Horizontal
+            // 
+            this.button_prewitt3x3Horizontal.Enabled = false;
+            this.button_prewitt3x3Horizontal.Location = new System.Drawing.Point(3, 587);
+            this.button_prewitt3x3Horizontal.Name = "button_prewitt3x3Horizontal";
+            this.button_prewitt3x3Horizontal.Size = new System.Drawing.Size(169, 26);
+            this.button_prewitt3x3Horizontal.TabIndex = 9;
+            this.button_prewitt3x3Horizontal.Text = "Prewitt 3x3 poziomy";
+            this.button_prewitt3x3Horizontal.UseVisualStyleBackColor = true;
+            this.button_prewitt3x3Horizontal.Click += new System.EventHandler(this.button_prewitt3x3Horizontal_Click);
+            // 
+            // button_prewitt3x3Vertical
+            // 
+            this.button_prewitt3x3Vertical.Enabled = false;
+            this.button_prewitt3x3Vertical.Location = new System.Drawing.Point(3, 619);
+            this.button_prewitt3x3Vertical.Name = "button_prewitt3x3Vertical";
+            this.button_prewitt3x3Vertical.Size = new System.Drawing.Size(169, 26);
+            this.button_prewitt3x3Vertical.TabIndex = 20;
+            this.button_prewitt3x3Vertical.Text = "Prewitt 3x3 pionowy";
+            this.button_prewitt3x3Vertical.UseVisualStyleBackColor = true;
+            this.button_prewitt3x3Vertical.Click += new System.EventHandler(this.button_prewitt3x3Vertical_Click);
+            // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
@@ -279,35 +334,6 @@
             this.picturebox_histogram.TabStop = false;
             this.picturebox_histogram.Visible = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 427);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Promień pędzla";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 520);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 13);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Mnożnik macierzy";
-            // 
-            // trackBar_normalizationFactor
-            // 
-            this.trackBar_normalizationFactor.LargeChange = 1;
-            this.trackBar_normalizationFactor.Location = new System.Drawing.Point(3, 536);
-            this.trackBar_normalizationFactor.Maximum = 255;
-            this.trackBar_normalizationFactor.Minimum = 1;
-            this.trackBar_normalizationFactor.Name = "trackBar_normalizationFactor";
-            this.trackBar_normalizationFactor.Size = new System.Drawing.Size(223, 45);
-            this.trackBar_normalizationFactor.TabIndex = 18;
-            this.trackBar_normalizationFactor.Value = 1;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,9 +349,9 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_brushSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_normalizationFactor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_histogramLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox_histogram)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_normalizationFactor)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -355,6 +381,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TrackBar trackBar_normalizationFactor;
+        private System.Windows.Forms.Button button_prewitt3x3Horizontal;
+        private System.Windows.Forms.Button button_prewitt3x3Vertical;
     }
 }
 

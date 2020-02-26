@@ -72,5 +72,14 @@ namespace Grafika003.Filters
 [ 0,  0,  0, ],  
 [ -1, -2, -1, ] ]";
 
+        public static string Prewitt3x3Horizontal =>
+ @"[ [ -1,  0,  1, ],  
+[ -1,  0,  1, ],  
+[ -1,  0,  1, ], ]";
+
+        public static string Prewitt3x3Vertical =>
+            @"[ [  1,  1,  1, ],  
+[  0,  0,  0, ],
+[ -1, -1, -1, ], ] ";
     }
 }

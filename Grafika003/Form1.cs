@@ -32,6 +32,8 @@ namespace Grafika003
             button_reset_image.Enabled = true;
             button_setSobel3x3Hor.Enabled = true;
             button_setSobel3x3Ver.Enabled = true;
+            button_prewitt3x3Horizontal.Enabled = true;
+            button_prewitt3x3Vertical.Enabled = true;
         }
 
         private void button_openFile(object sender, System.EventArgs e)
@@ -76,36 +78,6 @@ namespace Grafika003
             mainPictureBox.Image = applyFilter(new Bitmap(mainPictureBox.Image));
 
             reload_histograms();
-        }
-
-        private void button_setLaplacian_Click(object sender, EventArgs e)
-        {
-            FilterJson.Text = MatrixFilters.Laplacian3x3;
-        }
-
-        private void button_setLaplacian55_Click(object sender, EventArgs e)
-        {
-            FilterJson.Text = MatrixFilters.Laplacian5x5;
-        }
-
-        private void button_setSobel3x3Ver_Click(object sender, EventArgs e)
-        {
-            FilterJson.Text = MatrixFilters.Sobel3x3Ver;
-        }
-
-        private void button_setSobel3x3Hor_Click(object sender, EventArgs e)
-        {
-            FilterJson.Text = MatrixFilters.Sobel3x3Hor;
-        }
-
-        private void button_setGaussian5x5type2_Click(object sender, EventArgs e)
-        {
-            FilterJson.Text = MatrixFilters.Gaussian5x5Type2;
-        }
-
-        private void button_setGaussian5x5type1_Click(object sender, EventArgs e)
-        {
-            FilterJson.Text = MatrixFilters.Gaussian5x5Type1;
         }
 
         private void checkbox_showHistogram_CheckedChanged(object sender, EventArgs e)
