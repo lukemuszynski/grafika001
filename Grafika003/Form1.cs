@@ -61,7 +61,7 @@ namespace Grafika003
         {
             var filterMatrix = JsonConvert.DeserializeObject<double[,]>(FilterJson.Text);
 
-            if(filterMatrix.GetUpperBound(0) != filterMatrix.GetUpperBound(1))
+            if(filterMatrix == null || filterMatrix.GetUpperBound(0) != filterMatrix.GetUpperBound(1))
             {
                 return copiedBitmap;
             }
